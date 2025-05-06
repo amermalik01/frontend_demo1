@@ -230,6 +230,15 @@
     </div>
     <!-- <div class="divider" role="separator" aria-label="Divider"></div> -->
     <div class="right-side">
+      <ul>
+        
+
+      @for(prod of productList; track prod.id){
+
+        <!-- <li>{{prod.title}}</li> -->
+        <li>{{prod.email}}</li>
+      }
+    </ul>
     </div>
   </div>
 </main>

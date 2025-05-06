@@ -14,9 +14,9 @@ export class LoginComponent {
 
   constructor(private fb: FormBuilder) {}
 
-  ngOninit() {
+  ngOnInit() {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
@@ -29,7 +29,12 @@ export class LoginComponent {
     this.isSubmitted = true;
     if (this.loginForm.invalid) return;
 
-    console.log(' form values ', this.fc['email'].value);
+    console.log(' form values ', this.fc);
+
+    if(this.fc['email']?.value === "emily.johnson@x.dummyjson.com" && this.fc['password']?.value ==="emilyspass"){
+      sessionStorage.setItem("isLoggin", 'true');
+    }
+    else sessionStorage.setItem("isLoggin", 'false');
     
   }
 }

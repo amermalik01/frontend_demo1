@@ -2,6 +2,7 @@
   <div class="w-screen h-screen bg-black opacity-50 absolute top-0 left-0"></div>
 
   <div class="relative text-white text-center flex flex-col gap-4 mx-auto border-2 rounded-md px-4 w-[30%] py-6 shadow-xl shadow-purple-500 h-auto">
+    <img src="assets/logo.svg" width="250" class="mx-auto">
     <h1 class="text-2xl font-semibold uppercase">Login</h1>
 
     <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
@@ -11,9 +12,11 @@
           Email</label>
         <input class="outline-none px-4 py-2 rounded-full bg-transparent border-2" type="text" formControlName="email" placeholder="Enter Email" />
 
-        <div class="error-list" *ngIf="fc['email'].errors && isSubmitted">
-
+        <div class="error-list" *ngIf="fc['email'].touched && fc['email'].errors && isSubmitted">
+          <div *ngIf="fc['email'].errors">Enter Email</div>
+          <div *ngIf="fc['email'].invalid">Enter a valid Email</div>
         </div>
+
       </div>
       <br>
 
@@ -21,6 +24,12 @@
         <label class="text-xl font-semibold text-left" for="password">
           Password</label>
         <input class="outline-none px-4 py-2 rounded-full bg-transparent border-2" type="password" formControlName="password" placeholder="Enter Password" />
+
+        <div class="error-list" *ngIf="fc['password'].errors && isSubmitted">
+          <div *ngIf="fc['password'].errors">Enter Password</div>
+          <div *ngIf="fc['password'].invalid">Min 6 character required </div>
+        </div>
+
       </div>
 
       <br>
